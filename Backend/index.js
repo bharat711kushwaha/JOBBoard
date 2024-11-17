@@ -9,7 +9,12 @@ import userRoutes from './routes/userRoutes.js';  // Import user routes
 import companyRoutes from "./routes/companyRouter.js"; // Importing company routes
 import jobRoutes from "./routes/jobRouter.js"; // Importing company routes
 import ApplicationRoutes from "./routes/ApplicationRoutes.js";
+
+import path from "path";
+
 const app = express();
+
+const _dirname = path.resolve();
 
 // Middleware
 app.use(express.json());
@@ -36,8 +41,13 @@ app.use('/api/v1/users', userRoutes);  // Prefix for user-related routes
 app.use('/api/v1/company', companyRoutes); 
 app.use('/api/v1/job', jobRoutes); 
 app.use('/api/v1/Application', ApplicationRoutes); 
+
+app.use(express.static(path.join(_dirname, "/Fronted/dist")));
+app.get("*",(_,res)=>{
+    res.sendFile(path.resolve(_dirname, "Fronted","dist","index.html"));
+})
 // Start the server
-const PORT = 8000 || process.env.PORT;
+const PORT = 3000 || process.env.PORT;
 app.listen(PORT, () => {
     connectDB();
     console.log(`Server running at port ${PORT}`);
