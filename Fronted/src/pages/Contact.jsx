@@ -95,8 +95,7 @@ const Contact = () => {
                     disabled={isSubmitting} 
                     className="bg-[#6A38C2] text-white py-2 px-6 rounded-lg hover:bg-[#F83002] transition duration-300 w-full">
                     {isSubmitting ? 'Sending...' : 'Send Message'}
-                </button>
-            </form>
+                </button>            </form>
 
             {/* Success and Error Messages */}
             {successMessage && <p className="mt-4 text-green-600 text-center">{successMessage}</p>}
